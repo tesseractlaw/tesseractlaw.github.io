@@ -3,191 +3,327 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tesseract Law — Space Law. India. Beyond.</title>
-  <meta name="description" content="Writing at the intersection of outer space, law, and India's emerging space economy. By Shubhanshu Gupta, Space Lawyer.">
-  <meta property="og:title" content="Tesseract Law">
-  <meta property="og:description" content="Space Law. India. Beyond.">
+  <title>Tesseract Law — The Law of the New Space Economy</title>
+  <meta name="description" content="Space law briefings for founders, investors and operators building India's space economy. Launch contracts, satellites and spectrum, lunar resources, liability, and Indian space policy — by Shubhanshu Gupta.">
+  <meta name="author" content="Shubhanshu Gupta">
+  <meta property="og:title" content="Tesseract Law — The Law of the New Space Economy">
+  <meta property="og:description" content="Space law briefings for founders building India's space economy.">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>">
+  <meta property="og:url" content="https://tesseractlaw.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#060d1f">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='18' y='18' width='46' height='46' fill='none' stroke='%23d9a441' stroke-width='7'/><rect x='36' y='36' width='46' height='46' fill='none' stroke='%234f8cff' stroke-width='7'/></svg>">
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="nav-logo">TESSERACT<span>/LAW</span></a>
-    <div class="nav-links">
-      <a href="#writing">Writing</a>
-      <a href="#about">About</a>
-      <a href="https://www.prakantlawoffices.com" target="_blank">Prakant Law</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <p class="hero-eyebrow">/ / &nbsp; Dispatches from the Legal Frontier</p>
-    <h1>Law Beyond<br>the Atmosphere</h1>
-    <p class="hero-sub">
-      India is launching rockets, licensing satellites, and writing the rules of a new economy in orbit.
-      Someone has to understand the law. This is that effort.
-    </p>
-    <a href="#writing" class="hero-cta">
-      <span>Read the Dispatches</span>
-      <span>↓</span>
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="brand" aria-label="Tesseract Law home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="4" y="4" width="16" height="16" />
+        <rect x="12" y="12" width="16" height="16" />
+        <path d="M4 4 L12 12 M20 4 L28 12 M4 20 L12 28 M20 20 L28 28" />
+      </svg>
+      <span>Tesseract<em>Law</em></span>
     </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#briefings">Briefings</a>
+      <a href="#topics">Topics</a>
+      <a href="#mission-log">Mission Log</a>
+      <a href="#about">About</a>
+      <a href="#subscribe" class="nav-cta">Subscribe</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <canvas id="space-scene" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <p class="eyebrow"><span class="pulse"></span> Space law briefings for founders</p>
+      <h1>The law of the<br><em>new space economy.</em></h1>
+      <p class="hero-sub">
+        Launch contracts, satellite licensing, lunar resources and India's emerging space regime —
+        explained for the people building it.
+      </p>
+      <div class="hero-actions">
+        <a href="#briefings" class="btn btn-primary">Read the briefings <span aria-hidden="true">→</span></a>
+        <a href="#subscribe" class="btn btn-ghost">Get new briefings by email</a>
+      </div>
+    </div>
+    <a href="#briefings" class="scroll-cue" aria-label="Scroll to briefings"><span></span></a>
   </section>
 
-  <!-- COORDINATES BAR -->
-  <div class="coord-bar">
-    <div><span>LAT / </span><strong>28.5355° N</strong></div>
-    <div><span>LON / </span><strong>77.3910° E</strong></div>
-    <div><span>JURISDICTION / </span><strong>Supreme Court of India</strong></div>
-    <div><span>UTC / </span><strong id="live-time">—</strong></div>
-    <div><span>SIGNAL / </span><strong>ACTIVE</strong></div>
-  </div>
-
-  <!-- WRITING SECTION -->
-  <section class="section" id="writing">
+  <!-- ============ BRIEFINGS ============ -->
+  <main>
+  <section class="section section-paper" id="briefings">
     <div class="container">
-      <div class="section-label">Transmissions</div>
-      <h2 style="font-size:1.9rem; margin-bottom:0.5rem;">Recent Writing</h2>
-      <p style="color:var(--muted); font-size:0.95rem; margin-bottom:0;">Space law, Indian regulatory frameworks, and what happens when physics meets jurisprudence.</p>
+      <div class="section-head">
+        <div>
+          <p class="kicker">01 — Briefings</p>
+          <h2>Latest analysis</h2>
+        </div>
+        <p class="section-intro">Long-form pieces on the legal questions space companies actually run into — written by a practising lawyer, not a press release.</p>
+      </div>
 
-      <div class="post-grid">
+      <!-- Featured -->
+      <a class="feature reveal" href="posts/who-owns-the-moon.html">
+        <div class="feature-art art-moon" aria-hidden="true">
+          <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="moonG" cx="40%" cy="35%" r="70%">
+                <stop offset="0%" stop-color="#f4efe2"/>
+                <stop offset="60%" stop-color="#c9c2b2"/>
+                <stop offset="100%" stop-color="#8d8778"/>
+              </radialGradient>
+              <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0a1633"/>
+                <stop offset="100%" stop-color="#1d2f5e"/>
+              </linearGradient>
+            </defs>
+            <rect width="600" height="400" fill="url(#skyG)"/>
+            <g class="twinkle">
+              <circle cx="60" cy="50" r="1.4" fill="#fff"/><circle cx="140" cy="120" r="1" fill="#fff"/>
+              <circle cx="520" cy="60" r="1.2" fill="#fff"/><circle cx="470" cy="150" r="0.9" fill="#fff"/>
+              <circle cx="250" cy="40" r="1" fill="#fff"/><circle cx="560" cy="210" r="1.1" fill="#fff"/>
+              <circle cx="30" cy="190" r="0.9" fill="#fff"/><circle cx="340" cy="90" r="1.2" fill="#ffd98a"/>
+            </g>
+            <!-- Earth in the sky -->
+            <circle cx="470" cy="95" r="34" fill="#2f6fe0"/>
+            <path d="M450 80 q12 -10 22 0 t18 12 q-8 10 -22 6 t-18 -18z" fill="#4fae7a" opacity=".9"/>
+            <circle cx="470" cy="95" r="34" fill="none" stroke="#9cc4ff" stroke-opacity=".5" stroke-width="3"/>
+            <!-- Lunar surface -->
+            <ellipse cx="300" cy="470" rx="520" ry="200" fill="url(#moonG)"/>
+            <ellipse cx="150" cy="330" rx="40" ry="9" fill="#9e9787"/>
+            <ellipse cx="420" cy="350" rx="60" ry="12" fill="#a39c8c"/>
+            <ellipse cx="300" cy="385" rx="30" ry="6" fill="#9e9787"/>
+            <!-- Lander -->
+            <g class="lander" transform="translate(265 248)">
+              <path d="M-36 58 L-20 22 M36 58 L20 22 M-12 58 L-8 30 M12 58 L8 30" stroke="#d9a441" stroke-width="3" fill="none"/>
+              <rect x="-26" y="0" width="52" height="28" rx="3" fill="#e7e2d4" stroke="#7a7466"/>
+              <rect x="-18" y="-22" width="36" height="22" rx="2" fill="#d9a441"/>
+              <circle cx="0" cy="-11" r="5" fill="#0a1633"/>
+              <line x1="0" y1="-22" x2="0" y2="-40" stroke="#7a7466" stroke-width="2"/>
+              <circle cx="0" cy="-42" r="4" fill="#4f8cff"/>
+            </g>
+            <!-- Flag -->
+            <g transform="translate(360 268)">
+              <line x1="0" y1="0" x2="0" y2="46" stroke="#e7e2d4" stroke-width="2"/>
+              <rect class="flag" x="0" y="0" width="30" height="18" fill="#f5f2ea" stroke="#7a7466" stroke-width=".8"/>
+              <text x="15" y="13" text-anchor="middle" font-family="Space Mono, monospace" font-size="9" fill="#0a1633">?</text>
+            </g>
+          </svg>
+          <span class="badge">Featured</span>
+        </div>
+        <div class="feature-body">
+          <p class="tag">International Space Law · Outer Space Treaty</p>
+          <h3>Who Owns the Moon? India's Position Under the Outer Space Treaty</h3>
+          <p>Four nations are actively returning to the lunar surface. Private companies are planning mines. The Outer Space Treaty says no nation can "appropriate" the Moon — so what does that mean for resource extraction, and where does India stand?</p>
+          <p class="meta">November 2026 · 8 min read <span class="read">Read briefing →</span></p>
+        </div>
+      </a>
 
-        <!-- POST 1 — Featured -->
-        <a href="posts/who-owns-the-moon.html" style="text-decoration:none; display:contents;">
-          <article class="post-card" style="grid-column: span 2;">
-            <div class="post-card-visual visual-gargantua" style="height:260px;">
-              <!-- Animated orbit lines -->
-              <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.4;" viewBox="0 0 400 260">
-                <ellipse cx="200" cy="130" rx="160" ry="50" fill="none" stroke="rgba(200,169,110,0.5)" stroke-width="1" stroke-dasharray="4 6"/>
-                <ellipse cx="200" cy="130" rx="120" ry="35" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5" stroke-dasharray="2 8"/>
-                <circle cx="310" cy="105" r="4" fill="rgba(200,169,110,0.8)"/>
-                <circle cx="90" cy="155" r="2.5" fill="rgba(74,158,255,0.6)"/>
-              </svg>
-              <div style="position:absolute;bottom:1.5rem;right:1.5rem;font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(200,169,110,0.7);letter-spacing:0.15em;">FEATURED &nbsp;●</div>
-            </div>
-            <div class="post-card-body">
-              <span class="post-tag">International Space Law · Outer Space Treaty</span>
-              <h3 style="font-size:1.3rem;">Who Owns the Moon? India's Position Under the Outer Space Treaty</h3>
-              <p>Four nations are actively returning to the lunar surface. Private companies are planning mines. India just landed Chandrayaan-3 near the south pole. The Outer Space Treaty says no nation can "appropriate" the Moon — but what does that actually mean for resource extraction, and where does India stand?</p>
-              <div class="post-meta">
-                <span>November 2026 &nbsp;·&nbsp; 8 min read</span>
-                <span class="post-read-link">Read dispatch →</span>
-              </div>
-            </div>
-          </article>
+      <div class="card-grid">
+        <a class="card reveal" href="posts/force-majeure-satellite-launch.html">
+          <div class="card-art art-launch" aria-hidden="true">
+            <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#1b2a55"/>
+                  <stop offset="70%" stop-color="#e58a5a"/>
+                  <stop offset="100%" stop-color="#f6c77d"/>
+                </linearGradient>
+              </defs>
+              <rect width="400" height="240" fill="url(#dawn)"/>
+              <rect y="200" width="400" height="40" fill="#22243a"/>
+              <!-- Launch tower -->
+              <g stroke="#3b3f5c" stroke-width="2" fill="none">
+                <path d="M150 200 V70 M170 200 V70"/>
+                <path d="M150 90 L170 110 M170 90 L150 110 M150 130 L170 150 M170 130 L150 150 M150 170 L170 190 M170 170 L150 190"/>
+                <path d="M170 100 H188"/>
+              </g>
+              <!-- Rocket on pad -->
+              <g class="rocket-hold" transform="translate(200 0)">
+                <path d="M0 62 C8 74 10 86 10 100 V190 H-10 V100 C-10 86 -8 74 0 62Z" fill="#f5f2ea" stroke="#2b2d45" stroke-width="1.2"/>
+                <rect x="-10" y="120" width="20" height="8" fill="#d9a441"/>
+                <path d="M-10 170 L-20 196 L-10 190Z M10 170 L20 196 L10 190Z" fill="#c24a3a"/>
+              </g>
+              <!-- Hold sign -->
+              <g transform="translate(300 60)">
+                <rect x="-62" y="-18" width="124" height="36" rx="4" fill="#0a1633" opacity=".85"/>
+                <text x="0" y="6" text-anchor="middle" font-family="Space Mono, ui-monospace, monospace" font-size="14" font-weight="700" fill="#ff6b5a" class="blink">T-00:00 HOLD</text>
+              </g>
+            </svg>
+          </div>
+          <div class="card-body">
+            <p class="tag">Contracts · Launch · Founders</p>
+            <h3>Your Satellite Launch Contract Has a Force Majeure Clause. It Won't Work the Way You Think.</h3>
+            <p>How narrowly Indian courts read force majeure — and what actually happens when a regulatory hold delays your launch by eight months.</p>
+            <p class="meta">November 2026 · 7 min read <span class="read">Read →</span></p>
+          </div>
         </a>
 
-       <!-- POST 2 — Force Majeure Article -->
-<a href="posts/force-majeure-satellite-launch.html" style="text-decoration:none; display:contents;">
-  <article class="post-card" style="grid-column: span 2;">
-    <div class="post-card-visual visual-stars" style="height:220px;">
-      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.7;" viewBox="0 0 400 220">
-        <ellipse cx="200" cy="110" rx="150" ry="55" fill="none" stroke="rgba(74,158,255,0.3)" stroke-width="1"/>
-        <ellipse cx="200" cy="110" rx="110" ry="40" fill="none" stroke="rgba(74,158,255,0.15)" stroke-width="0.8" stroke-dasharray="6 8"/>
-        <ellipse cx="200" cy="110" rx="170" ry="65" fill="none" stroke="rgba(255,80,80,0.2)" stroke-width="1" stroke-dasharray="4 10"/>
-        <circle cx="340" cy="88" r="4" fill="rgba(74,158,255,0.7)"/>
-        <circle cx="340" cy="88" r="8" fill="none" stroke="rgba(74,158,255,0.3)" stroke-width="0.5"/>
-        <text x="200" y="118" text-anchor="middle" font-size="11" fill="rgba(255,80,80,0.15)" font-family="monospace" letter-spacing="2">FORCE MAJEURE</text>
-      </svg>
-      <div style="position:absolute;bottom:1.5rem;right:1.5rem;font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(74,158,255,0.6);letter-spacing:0.15em;">NEW &nbsp;●</div>
-    </div>
-    <div class="post-card-body">
-      <span class="post-tag">Contracts · Space Law · Founders</span>
-      <h3 style="font-size:1.2rem;">Your Satellite Launch Contract Has a Force Majeure Clause. It Won't Work the Way You Think.</h3>
-      <p>Every launch contract I review has one. Almost no founder understands how narrow Indian courts read it — or what actually happens when a regulatory hold delays their launch by 8 months.</p>
-      <div class="post-meta">
-        <span>November 2026 &nbsp;·&nbsp; 7 min read</span>
-        <span class="post-read-link">Read dispatch →</span>
-      </div>
-    </div>
-  </article>
-</a>
-
-        <!-- POST 3 -->
-        <article class="post-card">
-          <div class="post-card-visual visual-tesseract">
-            <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.8;" viewBox="0 0 320 200">
-              <!-- Tesseract wireframe suggestion -->
-              <rect x="90" y="60" width="80" height="80" fill="none" stroke="rgba(200,169,110,0.4)" stroke-width="1"/>
-              <rect x="150" y="40" width="80" height="80" fill="none" stroke="rgba(74,158,255,0.3)" stroke-width="1"/>
-              <line x1="90" y1="60" x2="150" y2="40" stroke="rgba(200,169,110,0.2)" stroke-width="0.8"/>
-              <line x1="170" y1="60" x2="230" y2="40" stroke="rgba(200,169,110,0.2)" stroke-width="0.8"/>
-              <line x1="90" y1="140" x2="150" y2="120" stroke="rgba(200,169,110,0.2)" stroke-width="0.8"/>
-              <line x1="170" y1="140" x2="230" y2="120" stroke="rgba(200,169,110,0.2)" stroke-width="0.8"/>
-            </svg>
-          </div>
-          <div class="post-card-body">
-            <span class="post-tag">Liability · Gaganyaan</span>
-            <h3>Gaganyaan Goes Up — Who's Liable If Something Goes Wrong?</h3>
-            <p>India's first crewed mission is on the horizon. The Liability Convention of 1972 has answers — but they were written before nations routinely partnered with private companies. The gap is significant.</p>
-            <div class="post-meta">
-              <span>Coming soon</span>
-              <span class="post-read-link" style="opacity:0.4;">Draft in progress</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- POST 4 -->
-        <article class="post-card">
-          <div class="post-card-visual visual-stars">
-            <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.9;" viewBox="0 0 320 200">
-              <text x="160" y="85" text-anchor="middle" font-size="32" fill="rgba(255,255,255,0.08)" font-family="monospace" font-weight="bold">STARLINK</text>
-              <text x="160" y="115" text-anchor="middle" font-size="32" fill="rgba(200,169,110,0.08)" font-family="monospace" font-weight="bold">vs JIO</text>
-              <line x1="60" y1="100" x2="260" y2="100" stroke="rgba(200,169,110,0.2)" stroke-width="0.5" stroke-dasharray="4 4"/>
-            </svg>
-          </div>
-          <div class="post-card-body">
-            <span class="post-tag">Satellite Law · Spectrum</span>
-            <h3>Starlink vs. Jio: The Satellite Spectrum War and Its Legal Stakes</h3>
-            <p>Musk wants orbital slots. Ambani wants the spectrum auctioned. TRAI is in the middle. What international space law and Indian telecom regulation actually say — and why it matters beyond these two billionaires.</p>
-            <div class="post-meta">
-              <span>Coming soon</span>
-              <span class="post-read-link" style="opacity:0.4;">Draft in progress</span>
-            </div>
-          </div>
-        </article>
-
+        <div class="launchpad reveal">
+          <p class="kicker">On the launchpad</p>
+          <h3>Briefings in preparation</h3>
+          <ul>
+            <li>
+              <span class="lp-tag">Liability</span>
+              <strong>Gaganyaan goes up — who is liable if something goes wrong?</strong>
+              <span class="lp-note">The 1972 Liability Convention vs. public–private missions</span>
+            </li>
+            <li>
+              <span class="lp-tag">Spectrum</span>
+              <strong>Starlink vs. Jio: the satellite spectrum fight and its legal stakes</strong>
+              <span class="lp-note">Administrative allocation, auctions and the ITU</span>
+            </li>
+            <li>
+              <span class="lp-tag">India Policy</span>
+              <strong>IN-SPACe authorisation, explained for founders</strong>
+              <span class="lp-note">What to file, when, and what slows it down</span>
+            </li>
+          </ul>
+          <a href="#subscribe" class="text-link">Get these when they launch →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT STRIP -->
-  <div class="about-strip" id="about">
-    <div class="about-inner">
-      <div>
-        <div class="about-avatar">SG</div>
+  <!-- ============ TOPICS ============ -->
+  <section class="section section-paper-2" id="topics">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="kicker">02 — Coverage</p>
+          <h2>What I write about</h2>
+        </div>
+        <p class="section-intro">Five areas where space businesses most often meet the law — and where the rules are still being written.</p>
       </div>
-      <div class="about-text">
-        <h3>Shubhanshu Gupta</h3>
-        <p class="about-role"> &nbsp;·&nbsp; Space Lawyer &nbsp;·&nbsp; Founding Partner, Prakant Law Offices LLP</p>
-        <p>
-          India is becoming a space nation faster than its legal system can keep up. I'm a lawyer, and I find that gap worth writing about.
-        </p>
-        <p style="margin-top:1rem;">
-          <a href="https://www.prakantlawoffices.com" target="_blank" style="color:var(--accent2); font-family:'Space Mono',monospace; font-size:0.8rem; letter-spacing:0.08em;">
-            prakantlawoffices.com →
-          </a>
-        </p>
+      <div class="topic-grid">
+        <div class="topic reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4c6 6 8 14 8 22v10H16V26c0-8 2-16 8-22z"/><path d="M16 30l-6 8h6M32 30l6 8h-6"/><path d="M20 40c1 3 2 4 4 6 2-2 3-3 4-6"/><circle cx="24" cy="20" r="3"/></svg>
+          <h3>Launch &amp; Contracts</h3>
+          <p>Launch services agreements, delays, force majeure, risk allocation and cross-waivers.</p>
+        </div>
+        <div class="topic reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="19" y="19" width="10" height="10"/><rect x="4" y="20" width="12" height="8"/><rect x="32" y="20" width="12" height="8"/><path d="M16 24h3M29 24h3M24 19v-6M20 9a6 6 0 018 0"/></svg>
+          <h3>Satellites &amp; Spectrum</h3>
+          <p>Orbital slots, ITU filings, spectrum allocation, satcom licensing and TRAI.</p>
+        </div>
+        <div class="topic reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><circle cx="17" cy="18" r="3"/><circle cx="29" cy="30" r="4"/><circle cx="31" cy="15" r="2"/></svg>
+          <h3>Moon &amp; Resources</h3>
+          <p>Non-appropriation, Artemis Accords, lunar mining rights and the South Pole race.</p>
+        </div>
+        <div class="topic reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4l16 6v12c0 10-7 18-16 22C15 40 8 32 8 22V10z"/><path d="M17 24l5 5 9-10"/></svg>
+          <h3>Liability &amp; Insurance</h3>
+          <p>State liability, debris, collisions, third-party damage and launch insurance.</p>
+        </div>
+        <div class="topic reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40h32M12 40V20M20 40V20M28 40V20M36 40V20M6 20h36L24 8z"/></svg>
+          <h3>India Space Policy</h3>
+          <p>IN-SPACe, the Space Policy 2023, FDI in space, NSIL and the draft Space Activities Bill.</p>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>
-      <strong>TESSERACT / LAW</strong> &nbsp;·&nbsp;
-      Space Law. India. Beyond. &nbsp;·&nbsp;
-      © 2026 Shubhanshu Gupta &nbsp;·&nbsp;
-      <a href="https://www.prakantlawoffices.com" target="_blank" style="color:var(--muted);">Prakant Law Offices LLP</a>
-    </p>
-    <p style="margin-top:0.5rem; opacity:0.5;">
-      Nothing here is legal advice. All views are personal.
-    </p>
+  <!-- ============ MISSION LOG (NEWS) ============ -->
+  <section class="section section-dark" id="mission-log">
+    <canvas class="mini-stars" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="kicker kicker-light">03 — Mission Log</p>
+          <h2>Space news, with the legal angle</h2>
+        </div>
+        <p class="section-intro">Recent developments worth a founder's attention — and the legal question each one raises.</p>
+      </div>
+      <ol class="log" id="news-list"><!-- filled from data/news.js --></ol>
+    </div>
+  </section>
+
+  <!-- ============ FOR FOUNDERS ============ -->
+  <section class="section section-paper" id="founders">
+    <div class="container">
+      <div class="founders reveal">
+        <div class="founders-art" aria-hidden="true">
+          <div class="orbit o1"><span class="sat"></span></div>
+          <div class="orbit o2"><span class="sat sat-gold"></span></div>
+          <div class="orbit o3"><span class="sat"></span></div>
+          <div class="planet"></div>
+        </div>
+        <div class="founders-copy">
+          <p class="kicker">The practice</p>
+          <h2>Where this writing comes from</h2>
+          <p>These briefings draw on day-to-day work in contracts, regulation and disputes at Prakant Law Offices LLP, a full-service firm based in Delhi. Areas of practice relevant to the space sector include:</p>
+          <ul class="checks">
+            <li>Commercial contracts &amp; technology agreements</li>
+            <li>Regulatory &amp; policy matters</li>
+            <li>Corporate, investment &amp; FDI</li>
+            <li>Arbitration &amp; commercial litigation</li>
+          </ul>
+          <a class="btn btn-dark" href="https://www.prakantlawoffices.com" target="_blank" rel="noopener">Visit Prakant Law Offices <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SUBSCRIBE ============ -->
+  <section class="section section-paper-2" id="subscribe">
+    <div class="container narrow center">
+      <p class="kicker">Newsletter</p>
+      <h2>One briefing a month. No noise.</h2>
+      <p class="section-intro center">New analysis on space law and India's space economy, straight to your inbox.</p>
+      <form class="subscribe" id="subscribe-form">
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@company.com" required>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <p class="form-note" id="form-note">Free. Unsubscribe anytime.</p>
+      <div class="social" id="social-links"></div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section section-paper" id="about">
+    <div class="container about">
+      <div class="about-photo" aria-hidden="true">
+        <span>SG</span>
+        <div class="about-ring"></div>
+      </div>
+      <div>
+        <p class="kicker">About the author</p>
+        <h2>Shubhanshu Gupta</h2>
+        <p class="about-role">Founding Partner, Prakant Law Offices LLP</p>
+        <p>India is becoming a space nation faster than its legal system can keep up. I'm a litigator and transactional lawyer who finds that gap worth writing about — and worth helping founders navigate.</p>
+        <p>Tesseract Law is where I work through the questions: who owns what in orbit, who pays when things fall, and how Indian law is catching up.</p>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand brand-light">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="4" y="4" width="16" height="16" /><rect x="12" y="12" width="16" height="16" />
+          <path d="M4 4 L12 12 M20 4 L28 12 M4 20 L12 28 M20 20 L28 28" />
+        </svg>
+        <span>Tesseract<em>Law</em></span>
+      </a>
+      <p>© 2026 Shubhanshu Gupta · <a href="https://www.prakantlawoffices.com" target="_blank" rel="noopener">Prakant Law Offices LLP</a></p>
+      <p class="disclaimer">Content on this site is for general information only and is not legal advice. Views are personal.</p>
+    </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="data/news.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>
