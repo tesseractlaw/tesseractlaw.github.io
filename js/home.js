@@ -326,21 +326,18 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 
 /* ---------- 3. PAGE BEHAVIOUR ---------- */
 
-// Mission Log
+// Space news (right-hand panel)
 (function renderNews() {
   const list = document.getElementById('news-list');
-  const items = (window.MISSION_LOG || []).slice(0, 6);
+  const items = (window.MISSION_LOG || []).slice(0, 5);
   if (!list) return;
-  if (!items.length) { list.closest('section').style.display = 'none'; return; }
+  if (!items.length) { list.closest('.panel').style.display = 'none'; return; }
   const esc = s => String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   list.innerHTML = items.map(n => `
-    <li class="reveal">
-      <time>${esc(n.date)}</time>
-      <div class="what">
-        <h3>${n.url ? `<a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)} ↗</a>` : esc(n.title)}</h3>
-        <span class="src">${esc(n.source)}</span>
-      </div>
-      <p class="angle"><b>Legal angle</b>${esc(n.angle)}</p>
+    <li>
+      <span class="news-meta">${esc(n.date)} · ${esc(n.source)}</span>
+      <h4>${n.url ? `<a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)} ↗</a>` : esc(n.title)}</h4>
+      <p>${esc(n.angle)}</p>
     </li>`).join('');
 })();
 
@@ -387,21 +384,31 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
   note.textContent = 'Newsletter opening soon.' + (SITE.linkedin || SITE.twitter ? ' Follow along meanwhile:' : '');
 })();
 
-/* ---------- 4. LIVE LAUNCH BOARD ----------
+/* ---------- 4. LIVE LAUNCH TABLE ----------
    Data: Launch Library 2 (The Space Devs), free public API.
-   Each visitor's browser asks for the latest list when the page opens.
-   Results are kept for 30 minutes per visitor so we stay within the
-   free limit of the API. Nothing needs updating by hand. */
-(function launchBoard() {
-  const india = document.getElementById('launches-india');
-  const world = document.getElementById('launches-world');
-  if (!india || !world) return;
+   Each visitor's browser asks for the latest launches when the page
+   opens, and keeps the result for 30 minutes to stay within the free
+   limit. Nothing needs updating by hand.
+   One table, sorted by date, always showing at least two launches
+   from India. The flag shows the country of the launch site. */
+(function launchTable() {
+  const body = document.getElementById('launch-rows');
+  if (!body) return;
 
   const API = 'https://ll.thespacedevs.com/2.2.0/launch/upcoming/';
   const INDIA_URL = API + '?location__ids=14&limit=5&mode=normal';   // 14 = Satish Dhawan Space Centre, Sriharikota
   const WORLD_URL = API + '?limit=20&mode=normal';
+  const ROWS = 7, MIN_INDIA = 2;
   const CACHE_KEY = 'tl-launches-v1', CACHE_MIN = 30;
+  const FLAGS = { USA: 'us', IND: 'in', CHN: 'cn', RUS: 'ru', KAZ: 'kz', NZL: 'nz', JPN: 'jp', GUF: 'fr', FRA: 'fr',
+    KOR: 'kr', PRK: 'kp', IRN: 'ir', ISR: 'il', GBR: 'gb', AUS: 'au', BRA: 'br', NOR: 'no', SWE: 'se', ESP: 'es',
+    DEU: 'de', ITA: 'it', CAN: 'ca', MHL: 'mh', UKR: 'ua' };
+  const NAMES = { USA: 'United States', IND: 'India', CHN: 'China', RUS: 'Russia', KAZ: 'Kazakhstan', NZL: 'New Zealand',
+    JPN: 'Japan', GUF: 'French Guiana', FRA: 'France', KOR: 'South Korea', IRN: 'Iran', ISR: 'Israel', GBR: 'United Kingdom',
+    AUS: 'Australia', BRA: 'Brazil', NOR: 'Norway', SWE: 'Sweden', MHL: 'Marshall Islands' };
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const abbrev = l => ((l.status && l.status.abbrev) || '').toUpperCase();
+  const country = l => (l.pad && l.pad.location && l.pad.location.country_code) || '';
 
   function readCache() {
     try {
@@ -412,8 +419,8 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
   }
   function writeCache(d) { try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), d })); } catch (e) {} }
 
-  function statusChip(st) {
-    const a = (st && st.abbrev || '').toUpperCase();
+  function statusChip(l) {
+    const a = abbrev(l);
     if (a === 'GO') return '<span class="status go">Go</span>';
     if (a === 'IN FLIGHT') return '<span class="status go">In flight</span>';
     if (a === 'HOLD') return '<span class="status tbc">On hold</span>';
@@ -422,37 +429,52 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
     return '';
   }
 
+  function flag(code) {
+    const f = FLAGS[code], name = NAMES[code] || code;
+    return f ? `<img class="lt-flag" src="https://flagcdn.com/w40/${f}.png" alt="${esc(name)}" title="Launch site: ${esc(name)}" width="22" height="15" loading="lazy">`
+             : `<span class="lt-code" title="Launch site">${esc(code)}</span>`;
+  }
+
   function row(l) {
     const d = new Date(l.net);
-   const fixed = l.status && ['GO', 'TBC', 'HOLD', 'IN FLIGHT'].includes((l.status.abbrev || '').toUpperCase());
-    const day = d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+    const fixed = ['GO', 'TBC', 'HOLD', 'IN FLIGHT'].includes(abbrev(l));
+    const day = d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
     const time = fixed ? d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }) : 'NET';
     const parts = (l.name || '').split(' | ');
     const mission = (l.mission && l.mission.name) || parts[1] || l.name;
     const rocket = (l.rocket && l.rocket.configuration && l.rocket.configuration.name) || parts[0] || '';
     const who = l.launch_service_provider ? l.launch_service_provider.name : '';
-    const place = l.pad && l.pad.location ? l.pad.location.name : '';
-    const orbit = l.mission && l.mission.orbit ? l.mission.orbit.abbrev : '';
-    return `<li>
-      <div class="when">${esc(day)}<small>${esc(time)}</small></div>
-      <div>
-        <div class="mission">${esc(mission)}${statusChip(l.status)}</div>
-        <div class="detail">${esc(rocket)}${who ? ' · ' + esc(who) : ''}</div>
-        <div class="detail">${esc(place)}${orbit ? ' · ' + esc(orbit) : ''}</div>
-      </div>
-    </li>`;
+    return `<tr>
+      <td><div class="lt-date">${esc(day)}<small>${esc(time)}</small></div></td>
+      <td><div class="lt-mission">${flag(country(l))}<div>
+        <div class="lt-name">${esc(mission)}</div>
+        <div class="lt-sub">${esc(rocket)}${who ? ' · ' + esc(who) : ''}</div>
+      </div></div></td>
+      <td>${statusChip(l)}</td>
+    </tr>`;
+  }
+
+  function pick(data) {
+    const seen = new Set(), all = [];
+    [...(data.world || []), ...(data.india || [])].forEach(l => { if (l && l.id && !seen.has(l.id)) { seen.add(l.id); all.push(l); } });
+    all.sort((a, b) => new Date(a.net) - new Date(b.net));
+    let list = all.slice(0, ROWS);
+    const indiaIn = list.filter(l => country(l) === 'IND').length;
+    if (indiaIn < MIN_INDIA) {
+      const extra = all.filter(l => country(l) === 'IND' && !list.includes(l)).slice(0, MIN_INDIA - indiaIn);
+      list = list.slice(0, ROWS - extra.length).concat(extra).sort((a, b) => new Date(a.net) - new Date(b.net));
+    }
+    return list;
   }
 
   function render(data) {
-    const inList = (data.india || []).slice(0, 5);
-    const wList = (data.world || []).filter(l => !(l.pad && l.pad.location && l.pad.location.country_code === 'IND')).slice(0, 5);
-    india.innerHTML = inList.length ? inList.map(row).join('') : '<li class="board-empty">No launches from India are scheduled in the database right now.</li>';
-    world.innerHTML = wList.length ? wList.map(row).join('') : '<li class="board-empty">No launches listed right now.</li>';
+    const list = pick(data);
+    body.innerHTML = list.length ? list.map(row).join('')
+      : '<tr><td class="board-loading" colspan="3">No launches listed right now.</td></tr>';
   }
 
   function fail() {
-    const msg = '<li class="board-empty">The launch list could not be loaded just now. Please try again later.</li>';
-    india.innerHTML = msg; world.innerHTML = msg;
+    body.innerHTML = '<tr><td class="board-loading" colspan="3">The launch list could not be loaded just now. Please try again later.</td></tr>';
   }
 
   const cached = readCache();

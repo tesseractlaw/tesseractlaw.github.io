@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://tesseractlaw.github.io/">
   <link rel="stylesheet" href="css/home.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='18' y='18' width='46' height='46' fill='none' stroke='%23d9a441' stroke-width='7'/><rect x='36' y='36' width='46' height='46' fill='none' stroke='%234f8cff' stroke-width='7'/></svg>">
 </head>
@@ -33,9 +34,8 @@
       <span class="brand-by">by Shubhanshu Gupta</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#launches">Launches</a>
       <a href="#articles">Articles</a>
-      <a href="#news">News</a>
+      <a href="#space">Launches &amp; News</a>
       <a href="#about">About</a>
       <a href="#subscribe" class="nav-cta">Subscribe</a>
     </nav>
@@ -57,46 +57,13 @@
       </p>
       <div class="hero-actions">
         <a href="#articles" class="btn btn-primary">Read the articles <span aria-hidden="true">→</span></a>
-        <a href="#launches" class="btn btn-ghost">See upcoming launches</a>
+        <a href="#space" class="btn btn-ghost">Upcoming launches</a>
       </div>
     </div>
-    <a href="#launches" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+    <a href="#articles" class="scroll-cue" aria-label="Scroll down"><span></span></a>
   </section>
 
   <main>
-  <!-- ============ UPCOMING LAUNCHES (live) ============ -->
-  <section class="section section-dark launches" id="launches">
-    <canvas class="mini-stars" aria-hidden="true"></canvas>
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <p class="kicker kicker-light">Launch board</p>
-          <h2>Upcoming launches</h2>
-        </div>
-        <p class="section-intro">What is lifting off next, from Sriharikota and from launch sites around the world.</p>
-      </div>
-
-      <div class="board">
-        <div class="board-col">
-          <h3 class="board-title"><span class="flag-dot india"></span>India</h3>
-          <ol class="board-list" id="launches-india">
-            <li class="board-loading">Loading launches…</li>
-          </ol>
-        </div>
-        <div class="board-col">
-          <h3 class="board-title"><span class="flag-dot world"></span>International</h3>
-          <ol class="board-list" id="launches-world">
-            <li class="board-loading">Loading launches…</li>
-          </ol>
-        </div>
-      </div>
-      <p class="board-source">
-        Launch data from <a href="https://thespacedevs.com/llapi" target="_blank" rel="noopener">Launch Library 2 by The Space Devs</a>.
-        Times shown in your local time zone. NET means "no earlier than".
-      </p>
-    </div>
-  </section>
-
   <!-- ============ ARTICLES ============ -->
   <section class="section section-paper" id="articles">
     <div class="container">
@@ -202,18 +169,37 @@
     </div>
   </section>
 
-  <!-- ============ NEWS ============ -->
-  <section class="section section-dark" id="news">
-    <canvas class="mini-stars" aria-hidden="true"></canvas>
+  <!-- ============ LAUNCHES & NEWS ============ -->
+  <section class="section section-paper" id="space">
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="kicker kicker-light">Space news</p>
-          <h2>Recent news, and the legal question in it</h2>
+          <p class="kicker">Launches &amp; news</p>
+          <h2>Happening in space</h2>
         </div>
-        <p class="section-intro">A few recent stories I found interesting, with a note on the legal issue each one raises.</p>
       </div>
-      <ol class="log" id="news-list"><!-- filled from data/news.js --></ol>
+
+      <div class="space-grid">
+        <div class="panel reveal">
+          <div class="panel-head">
+            <h3>Upcoming launches</h3>
+            <span class="live"><span class="live-dot"></span>Live</span>
+          </div>
+          <table class="launch-table">
+            <tbody id="launch-rows">
+              <tr><td class="board-loading" colspan="3">Loading launches…</td></tr>
+            </tbody>
+          </table>
+          <p class="panel-foot">Data: <a href="https://thespacedevs.com/llapi" target="_blank" rel="noopener">Launch Library 2</a>. Flag shows the launch site. Times in your time zone.</p>
+        </div>
+
+        <div class="panel reveal">
+          <div class="panel-head">
+            <h3>In the news</h3>
+          </div>
+          <ol class="news-list" id="news-list"><!-- filled from data/news.js --></ol>
+        </div>
+      </div>
     </div>
   </section>
 
