@@ -426,6 +426,8 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
     if (a === 'HOLD') return '<span class="status tbc">On hold</span>';
     if (a === 'TBC') return '<span class="status tbc">To confirm</span>';
     if (a === 'TBD') return '<span class="status tbd">Date not fixed</span>';
+    if (a === 'SUCCESS') return '<span class="status go">Launched</span>';
+    if (a === 'FAILURE' || a === 'PARTIAL FAILURE') return '<span class="status tbd">Failed</span>';
     return '';
   }
 
@@ -437,7 +439,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 
   function row(l) {
     const d = new Date(l.net);
-    const fixed = ['GO', 'TBC', 'HOLD', 'IN FLIGHT'].includes(abbrev(l));
+    const fixed = ['GO', 'TBC', 'HOLD', 'IN FLIGHT', 'SUCCESS', 'FAILURE', 'PARTIAL FAILURE'].includes(abbrev(l));
     const day = d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
     const time = fixed ? d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }) : 'NET';
     const parts = (l.name || '').split(' | ');
